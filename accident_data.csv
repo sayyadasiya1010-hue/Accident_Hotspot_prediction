@@ -1,0 +1,11 @@
+latitude,longitude,weather,traffic_density,road_condition,vehicle_speed,time,accident_severity
+13.6288,79.4192,Clear,High,Good,70,Morning,High
+13.5500,79.5000,Rain,High,Wet,55,Evening,High
+13.6500,79.4200,Clear,Medium,Good,45,Afternoon,Medium
+13.7000,79.4500,Fog,High,Poor,65,Morning,High
+13.6000,79.4800,Clear,Low,Good,35,Night,Low
+13.5800,79.4300,Rain,Medium,Wet,50,Evening,Medium
+13.6200,79.4600,Clear,High,Poor,75,Night,High
+13.6700,79.4900,Clear,Low,Good,40,Afternoon,Low
+13.5900,79.5100,Fog,Medium,Poor,60,Morning,High
+13.6400,79.4400,Rain,High,Wet,65,Evening,High

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AccidentAI | Accident Hotspot Prediction</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🚦 AccidentAI
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#prediction">Prediction</a>
+
+        <a href="#about">About</a>
+
+        <a href="#emergencyAlert">Emergency Alert</a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HOME SECTION
+========================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🤖 AI Powered Prediction
+        </div>
+
+        <h1>
+            Accident Hotspot
+            <span>Prediction</span>
+        </h1>
+
+        <p>
+            Predict accident risk using real-time location,
+            weather, traffic and road information.
+        </p>
+
+        <button
+            class="start-btn"
+            onclick="goToPrediction()"
+        >
+            Start Prediction
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PREDICTION SECTION
+========================= -->
+
+<section id="prediction">
+
+    <div class="prediction-card">
+
+        <h2>
+            Accident Risk Prediction
+        </h2>
+
+        <p class="subtitle">
+            Live location, weather, traffic and time are detected automatically.
+        </p>
+
+
+        <!-- LIVE LOCATION -->
+
+        <button
+            type="button"
+            id="locationBtn"
+            class="location-btn"
+        >
+            📍 Use Live Location
+        </button>
+
+        <p id="locationStatus"></p>
+
+
+        <!-- LATITUDE -->
+
+        <label for="latitude">
+            Latitude
+        </label>
+
+        <input
+            type="text"
+            id="latitude"
+            placeholder="Location will be detected automatically"
+            readonly
+        >
+
+
+        <!-- LONGITUDE -->
+
+        <label for="longitude">
+            Longitude
+        </label>
+
+        <input
+            type="text"
+            id="longitude"
+            placeholder="Location will be detected automatically"
+            readonly
+        >
+
+
+        <!-- =========================
+             WEATHER
+             HIDDEN FROM USER
+        ========================= -->
+
+        <input
+            type="hidden"
+            id="weather"
+        >
+
+
+        <!-- =========================
+             TRAFFIC
+             HIDDEN FROM USER
+        ========================= -->
+
+        <input
+            type="hidden"
+            id="traffic_density"
+        >
+
+
+        <!-- =========================
+             ROAD CONDITION
+        ========================= -->
+
+        <label for="road_condition">
+            🛣️ Road Condition
+        </label>
+
+        <select id="road_condition">
+
+            <option value="">
+                Select Road Condition
+            </option>
+
+            <option value="Good">
+                Good
+            </option>
+
+            <option value="Average">
+                Average
+            </option>
+
+            <option value="Poor">
+                Poor
+            </option>
+
+        </select>
+
+
+        <!-- =========================
+             VEHICLE SPEED
+        ========================= -->
+
+        <label for="vehicle_speed">
+            🚘 Vehicle Speed (km/h)
+        </label>
+
+        <input
+            type="number"
+            id="vehicle_speed"
+            placeholder="Example: 60"
+            min="0"
+            max="200"
+        >
+
+
+        <!-- =========================
+             CURRENT TIME
+        ========================= -->
+
+        <label for="time">
+            ⏰ Current Time
+        </label>
+
+        <input
+            type="text"
+            id="time"
+            placeholder="Automatically detected"
+            readonly
+        >
+
+
+        <!-- =========================
+             PREDICT BUTTON
+        ========================= -->
+
+        <button
+            type="button"
+            id="predictBtn"
+            class="predict-btn"
+        >
+            🤖 Predict Accident Risk
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         PREDICTION RESULT
+    ========================= -->
+
+    <div
+        id="result"
+        class="result"
+    ></div>
+
+
+    <!-- =========================
+         EMERGENCY ALERT
+         DIRECTLY BELOW RESULT
+    ========================= -->
+
+    <div
+        id="emergencyAlert"
+        class="emergency"
+        style="display: none;"
+    >
+
+        <div class="emergency-icon">
+            🚨
+        </div>
+
+        <h2>
+            EMERGENCY ALERT
+        </h2>
+
+        <p>
+            High accident risk detected!
+        </p>
+
+
+        <!-- LIVE LOCATION BOX -->
+
+        <div class="location-box">
+
+            <h3>
+                📍 Live Location
+            </h3>
+
+            <p>
+                <b>Latitude:</b>
+                <span id="alertLatitude"></span>
+            </p>
+
+            <p>
+                <b>Longitude:</b>
+                <span id="alertLongitude"></span>
+            </p>
+
+
+            <div
+                class="coordinates"
+                id="coordinates"
+            ></div>
+
+        </div>
+
+
+        <!-- EMERGENCY BUTTONS -->
+
+        <div class="emergency-buttons">
+
+            <button
+                type="button"
+                id="mapsBtn"
+                class="maps-btn"
+            >
+                🗺️ Open Google Maps
+            </button>
+
+
+            <button
+                type="button"
+                id="callBtn"
+                class="call-btn"
+            >
+                📞 Call Family
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section id="about">
+
+    <div class="about-box">
+
+        <h2>
+            About Accident AI
+        </h2>
+
+        <p>
+            Accident AI is an accident risk prediction system
+            designed to identify possible accident-prone situations.
+            The system uses live location, weather, traffic,
+            road condition, vehicle speed and time to estimate
+            accident risk.
+        </p>
+
+        <br>
+
+        <p>
+            When the risk is high, the system displays an
+            emergency alert with the current location.
+            The user can also open the location in Google Maps
+            and use the family call option.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026 AccidentAI | Accident Hotspot Prediction
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="/script.js"></script>
+
+</body>
+
+</html>
